@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .cpd {
+            position: relative;
+            width: 323px;
+            height: 430px;
+            margin-top: 70px;
+            margin-left: 120px;
+        }
+        
+        .xqd {
+            width: 323px;
+            height: 430px;
+            overflow: hidden;
+            border: 1px solid red;
+            position: absolute;
+            top: 70px;
+            left: 530px;
+            display: none;
+        }
+        
+        .zjc {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(50, 101, 251);
+            opacity: 0.3;
+            display: none;
+            top: 0;
+            left: 0;
+        }
+        
+        .xqd img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cpd">
+        <div class="zjc"></div>
+        <img src="01.jpg">
+    </div>
+    <div class="xqd">
+        <img src='02-2.png'>
+    </div>
+    <script>
+        let cpf = document.querySelector('.cpd');
+        let cp = document.querySelector('.cpd img');
+        let xqf = document.querySelector('.xqd');
+        let xq = document.querySelector('.xqd img');
+        let zzc = document.querySelector('.zjc');
+
+        cpf.onmouseover = function() {
+            xqf.style.display = "block";
+            zzc.style.display = 'block';
+        }
+        cpf.onmouseout = function() {
+            xqf.style.display = 'none';
+            zzc.style.display = 'none';
+        }
+        cpf.onmousemove = function(pos) {
+            xq.style.left = -(pos.clientX - 120) / cp.offsetWidth * (xq.offsetWidth - xqf.offsetWidth) + 'px';
+            xq.style.top = -(pos.clientY - 70) / cp.offsetHeight * (xq.offsetHeight - xqf.offsetHeight) + 'px';
+            zzc.style.left = pos.clientX - 120 - 50 + 'px';
+            zzc.style.top = pos.clientY - 70 - 50 + 'px';
+            if (zzc.style.left <= 0 + 'px') {
+                zzc.style.left = 0 + 'px';
+            }
+            if (zzc.style.top <= 0 + 'px') {
+                zzc.style.top = 0 + 'px';
+            }
+            if (parseInt(zzc.style.left) >= cp.offsetWidth - zzc.offsetWidth) {
+                zzc.style.left = cp.offsetWidth - zzc.offsetWidth + 'px';
+            }
+            if (parseInt(zzc.style.top) >= cp.offsetHeight - zzc.offsetHeight) {
+                zzc.style.top = cp.offsetHeight - zzc.offsetHeight + 'px';
+            }
+        }
+    </script>
+</body>
+
+</html>

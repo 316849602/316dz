@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .box {
+            width: 400px;
+            height: 300px;
+            position: relative;
+        }
+        
+        ul {
+            display: flex;
+            height: 40px;
+        }
+        
+        li {
+            flex: 1;
+            list-style: none;
+            line-height: 40px;
+            border: 1px solid blueviolet;
+            text-align: center;
+        }
+        
+        .box div {
+            position: absolute;
+            width: 398px;
+            height: 200px;
+            border: 1px solid blue;
+            line-height: 200px;
+            text-align: center;
+            display: none;
+        }
+        
+        .box .a {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div class="a">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <script>
+        var dj = document.querySelectorAll('li');
+        var cx = document.querySelectorAll('.box div');
+
+        for (var i = 0; i < dj.length; i++) {
+            dj[i].zdy = i;
+            dj[i].onclick = function() {
+                var i = this.zdy;
+                a(i);
+            }
+        }
+
+        function a(zdy) {
+            for (var i = 0; i < dj.length; i++) {
+                cx[i].className = "";
+            }
+            cx[zdy].className = "a";
+        }
+    </script>
+</body>
+
+</html>
